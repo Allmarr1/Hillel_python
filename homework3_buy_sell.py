@@ -19,6 +19,13 @@ left_sell1 = int(sell1 * UAN_USD - uah)
 left_sell2 = int(sell2 * UAN_EUR - uah)
 left_sell3 = int(sell3 * UAN_PLN - uah)
 
+if left_sell1 < 0:
+    left_sell1 = 0
+if left_sell2 < 0:
+    left_sell2 = 0
+if left_sell3 < 0:
+    left_sell3 = 0
+
 if operation == 'B':
     print("*" * 17)
 
