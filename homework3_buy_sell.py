@@ -69,6 +69,5 @@ elif operation == 'A':
 
 else:
     print("Введіть вірне значення")
-    while operation == str('B', 'S', 'A'):
-        operation = str(input("Виберить операцію: 'B-купівля', 'S-продаж', 'Все разом-A' "))
+
 
