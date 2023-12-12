@@ -19,12 +19,7 @@ left_sell1 = int(sell1 * UAN_USD - uah)
 left_sell2 = int(sell2 * UAN_EUR - uah)
 left_sell3 = int(sell3 * UAN_PLN - uah)
 
-if left_sell1 < 0:
-    left_sell1 = 0
-if left_sell2 < 0:
-    left_sell2 = 0
-if left_sell3 < 0:
-    left_sell3 = 0
+
 
 if operation == 'B':
     print("*" * 17)
@@ -52,8 +47,18 @@ elif operation == 'S':
 
     print("*" * 17)
     print("Ваша решта UAH")
-    print(f"*{left_sell1:<5}решта з USD")
-    print(f"*{left_sell2:<5}решта з EUR")
+
+    if left_sell1 < 0:
+        print(f"З Вас ще {left_sell1} uah")
+    else:
+        print(f"*{left_sell1:<5}решта з USD")
+
+
+    if left_sell2 < 0:
+        print(f"З Вас ще {left_sell2} uah")
+    else:
+        print(f"*{left_sell2:<5}решта з EUR")
+
     print(f"*{left_sell3:<5}решта з PLN")
 
     print("*" * 17)
