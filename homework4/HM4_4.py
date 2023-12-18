@@ -5,7 +5,7 @@ if input_a.isdigit() and input_b.isdigit():
     a = int(input_a)
     b = int(input_b)
 
-    if a in range(1, 201) and b in range(1, 201):
+    if a in range(1, 101) and b in range(1, 101):
             for j in range(2, 7):
                 temp = ''
                 count = 0
