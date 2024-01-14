@@ -34,16 +34,6 @@ current = {
     }
 }
 
-# while True:
-#     try:
-#         val_uah = float(input("Введіть кількість гривень, яку ви хочете продати: "))
-#         if val_uah < current["UAH"]["buy"][currency_key]:
-#             print("У Вас недостатньо коштів")
-#             continue
-#         break
-#     except ValueError:
-#         print("Лише число")
-#         continue
 
 print("Оберіть валюту, яку бажаєте отримати:")
 print("1. Долар США (USD)")
