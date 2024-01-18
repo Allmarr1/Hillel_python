@@ -1,14 +1,20 @@
 def check_parenthes(string):
+    test = "[]{}()"
     stack = []
     for char in string:
-        if char == ("(", "[", "{"):
-            stack.append(char)
-        else:
-            try:
-                if stack[-1] == ("(", "[", "{"):
-                    stack.pop()
-            except IndexError:
+        if char in test:
+            if char in ["(", "{", "["]:
                 stack.append(char)
+            else:
+                try:
+                    if stack[-1] == "(" and char == ")":
+                        stack.pop()
+                    elif stack[-1] == "{" and char == "}":
+                        stack.pop()
+                    elif stack[-1] == "[" and char == "]":
+                        stack.pop()
+                except IndexError:
+                    stack.append(char)
     if len(stack) > 0:
         return False
     return True
