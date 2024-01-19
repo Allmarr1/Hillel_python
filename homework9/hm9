@@ -3,15 +3,22 @@ def roman_to_arabic(numeral):
     arabic_num = 0
     temp= 0
 
-    for char in numeral[::-1]:
-        value = roman_dict[char]
+    for i in numeral[::-1]:
+        value = roman_dict[i]
         if value < temp:
             arabic_num -= value
         else:
             arabic_num += value
         temp = value
-
+    # print(arabic_num)
     return arabic_num
+
+
+roman = input(str("Введіть римське число     "))
+
+print(roman_to_arabic(roman))
+
+
 
 assert roman_to_arabic('I') == 1
 assert roman_to_arabic('IV') == 4
