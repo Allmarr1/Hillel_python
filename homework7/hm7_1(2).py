@@ -20,7 +20,6 @@ def check_curr(kasa, amount):
             if check_curr(kasa, amount - key):
                 return True
             kasa[key] += 1
-        print(kasa[key])    
     return False
 
 
