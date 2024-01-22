@@ -1,27 +1,31 @@
-def check_parenthes(string):
-    test = '[]{}()'
-    stack = []
-    for char in string:
-        if char in test:
-            if char == "(":
-                stack.append(char)
-            else:
-                try:
-                    if stack[-1] == "(":
-                        stack.pop()
-                except IndexError:
-                    stack.append(char)
-    if len(stack) > 0:
+def check_curr(kasa: dict, amount: int, keys = None):
+    if keys is None:
+        keys = list(kasa.keys())
+
+    if not keys:
+        return amount == 0
+
+    key = keys[0]
+
+    max_amount = amount // key
+    if max_amount > kasa[key]:
+        amount = amount - key * kasa[key]
+    else:
+        amount = amount - max_amount * key
+
+    if amount == 0:
+        return True
+    elif amount < 0:
         return False
-    return True
+    else:
+        del keys[0]
+        return check_curr(kasa, amount, keys )
 
 
 
-# assert check_parenthes("(())") == True
-# assert check_parenthes(")(") == False
-# assert check_parenthes("()(") == False
-# assert check_parenthes(")())") == False
-# assert check_parenthes("")
-assert check_parenthes("asasa(dsdsd)(") == False
-# assert check_parenthes("skaslka[{ddfdfsdd}()]") ==True
-# assert check_parenthes("}{kdlsds(p[])") == False
+
+
+assert check_curr({500:1, 100:2, 1:10}, 200) == True
+assert check_curr({100:2, 1:10}, 211) == False
+assert check_curr({100:2, 2:10}, 201) == False
+assert check_curr({100:2, 1:10}, 57) == False
