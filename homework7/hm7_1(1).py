@@ -1,3 +1,17 @@
+# def check_curr(kasa, amount):
+
+#     for key in kasa:
+#         max_amount = amount // key
+#         if max_amount > kasa[key]:
+#             amount = amount - key*kasa[key]#kasa[key] - кількість купюр номіналу key що є в касі
+#         else:
+#             amount = amount - max_amount*key
+#     if amount != 0:
+#         return False
+#     return True
+
+
+
 def check_curr(kasa: dict, amount: int, keys = None):
     if keys is None:
         keys = list(kasa.keys())
