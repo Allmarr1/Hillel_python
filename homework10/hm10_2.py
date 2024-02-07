@@ -1,31 +1,33 @@
+import random
 import csv
 import json
-import random
 
-random_numbers = [random.randint(1, 100) for _ in range(100)]
+numbers = [random.randint(1, 100) for _ in range(100)]
 
-with open('random_numbers.csv', 'w', newline='') as csv_file:
-    csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(['col{}'.format(i) for i in range(10)])  
-    for i in range(0, 100, 10):
-        csv_writer.writerow(random_numbers[i:i + 10])
+with open('numbers.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    for i in range(0, len(numbers), 10):
+        writer.writerow(numbers[i:i+10])
 
-json_data = {'data': [random_numbers[i:i + 10] for i in range(0, 100, 10)]}
-with open('random_numbers.json', 'w') as json_file:
-    json.dump(json_data, json_file, indent = 2)
+with open('numbers.json', 'w') as file:
+    for i in range(0, len(numbers), 10):
+        json.dump(numbers[i:i+10], file)
+        file.write('\n')
 
-with open('random_numbers.csv', 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    next(csv_reader)
-    csv_data = [list(map(int, row)) for row in csv_reader]
+csv_data = []
+with open('numbers.csv', 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        csv_data.append(list(map(int, row)))
 
-with open('random_numbers.json') as json_file:
-    json_data = json.load(json_file)
-    json_data = json_data['data']
+json_data = []
+with open('numbers.json', 'r') as file:
+    for line in file:
+        json_data.append(json.loads(line))
 
-csv_averages = [sum(row) / len(row) for row in csv_data]
-json_averages = [sum(row) / len(row) for row in json_data]
+csv_ave = [sum(row) / len(row) for row in csv_data]
+json_ave = [sum(row) / len(row) for row in json_data]
 
-print("lineNum\tjson_ave\tcsv_ave")
+print('lineNum\tjson_ave\tcsv_ave')
 for i in range(10):
-    print(f"{i}\t{json_averages[i]:.2f}\t\t{csv_averages[i]:.2f}")
+    print(f"{i}\t{json_ave[i]:.2f}\t\t{csv_ave[i]:.2f}")
